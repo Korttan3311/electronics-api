@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from scrapers.courts import scrape_courts
+from scrapers.multistore import scrape_all_categories
 
 app = FastAPI()
 
-@app.get("/products/courts")
-async def get_courts():
-    return await scrape_courts()
+@app.get("/products")
+async def get_all_products():
+    return await scrape_all_categories()
