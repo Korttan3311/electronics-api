@@ -4,5 +4,5 @@ from scrapers.courts import scrape_courts
 app = FastAPI()
 
 @app.get("/products/courts")
-def get_courts():
-    return scrape_courts()
+async def get_courts():
+    return await scrape_courts()
