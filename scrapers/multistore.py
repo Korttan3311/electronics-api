@@ -11,12 +11,12 @@ async def scrape_category(playwright, cat_name, cat_data):
     products = []
     for item in cat_data:
         try:
-            browser = await playwright.chromium.launch(headless=True)
+            browser = await playwright.chromium.launch(headless=True, args=["--no-sandbox"])
             page = await browser.new_page()
             await page.goto(item["url"], timeout=60000)
             await page.wait_for_timeout(5000)
 
-            # Different logic based on store
+            # Logic for Courts
             if "courts" in item["url"]:
                 tiles = await page.locator(".product-grid-item").all()
                 for tile in tiles:
@@ -35,6 +35,7 @@ async def scrape_category(playwright, cat_name, cat_data):
                     except:
                         continue
 
+            # Logic for Harvey Norman
             elif "harveynorman" in item["url"]:
                 tiles = await page.locator(".product-item-info").all()
                 for tile in tiles:
