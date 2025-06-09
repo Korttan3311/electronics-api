@@ -1,6 +1,6 @@
 from playwright.async_api import async_playwright
 
-async def scrape_courts():
+async def scrape_best_denki():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
@@ -26,4 +26,3 @@ async def scrape_courts():
                 continue
 
         await browser.close()
-        return products# Best Denki scraper using Selenium
